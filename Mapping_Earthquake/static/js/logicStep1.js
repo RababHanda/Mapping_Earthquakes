@@ -17,25 +17,25 @@ attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap
 
 // Create a base layer that holds both maps.
 let baseMaps = {
-  "Strees": streets, //the keys will set the text for switching options on the webpage
+  "Streets": streets, 
   "Satellite Streets": satelliteStreets
 };
 
 // Create the map object with a center and zoom level.
 let map = L.map('mapid', {
-  center: [43.7, -79.3],
-  zoom: 11,
-  layers: [satelliteStreets]
+  center: [39.5, -98.5],
+  zoom: 2,
+  layers: [streets]
 });
 
 // Pass our map layers into our layers control and add the layers control to the map.
 L.control.layers(baseMaps).addTo(map);
 
-// Accessing the torontoHoods GeoJSON URL
-let torontoHoods = "https://raw.githubusercontent.com/RababHanda/Mapping_Earthquakes/main/torontoNeighborhoods.json";
+// Accessing the airport GeoJSON URL
+let earthquakeData = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
 
 // Grabbing our GeoJSON data.
-d3.json(torontoHoods).then(function(data) {
+d3.json(earthquakeData).then(function(data) {
   console.log(data);
 // Creating a GeoJSON layer with the retrieved data.
 L.geoJSON(data).addTo(map);
